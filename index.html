@@ -106,9 +106,9 @@ nav {
   inset: 0;
   background: linear-gradient(
     110deg,
-    rgba(10,22,40,0.92) 0%,
-    rgba(10,22,40,0.80) 45%,
-    rgba(10,22,40,0.45) 100%
+    rgba(10,22,40,0.72) 0%,
+    rgba(10,22,40,0.55) 45%,
+    rgba(10,22,40,0.25) 100%
   );
   z-index: 1;
 }
@@ -116,10 +116,10 @@ nav {
 .hero-content {
   position: relative;
   z-index: 2;
-  min-height: 100vh;
+  min-height: 80vh;
   display: flex;
   align-items: center;
-  padding: 8rem 2.5rem 6rem;
+  padding: 7rem 2.5rem 5rem;
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -142,28 +142,29 @@ nav {
 }
 
 .hero h1 {
-  font-size: clamp(2rem, 4.5vw, 3.4rem);
+  font-size: clamp(2.4rem, 5.5vw, 4.2rem);
   font-weight: 700;
   line-height: 1.2;
   letter-spacing: -0.02em;
   color: #fff;
   margin-bottom: 1.2rem;
+  text-shadow: 0 2px 16px rgba(0,0,0,0.5);
 }
 
 .hero h1 em {
   font-style: normal;
-  background: linear-gradient(90deg, #29B6D8, #3B8FE8);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #7DD8F0;
+  -webkit-text-fill-color: #7DD8F0;
+  text-shadow: 0 2px 20px rgba(41,182,216,0.6);
 }
 
 .hero-sub {
-  font-size: 1rem;
-  color: rgba(255,255,255,0.72);
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.92);
   max-width: 520px;
   line-height: 1.85;
   margin-bottom: 2rem;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.4);
 }
 
 .hero-chips {
@@ -404,9 +405,9 @@ nav {
   inset: 0;
   background: linear-gradient(
     to top,
-    rgba(10,22,40,0.95) 0%,
-    rgba(10,22,40,0.6) 50%,
-    rgba(10,22,40,0.2) 100%
+    rgba(10,22,40,0.88) 0%,
+    rgba(10,22,40,0.45) 50%,
+    rgba(10,22,40,0.1) 100%
   );
 }
 
@@ -721,15 +722,40 @@ footer {
 @media (max-width: 768px) {
   nav { padding: 0 1.2rem; }
   .nav-links { display: none; }
-  .hero-content { padding: 7rem 1.2rem 5rem; }
-  .section { padding: 3.5rem 1.2rem; }
+  .nav-cta { font-size: 0.78rem; padding: 0.45rem 1rem; }
+
+  .hero-wrapper { min-height: 70vh; }
+  .hero-content { padding: 5.5rem 1.2rem 4rem; min-height: 70vh; }
+  .hero-logo img { height: 44px; }
+  .hero h1 { font-size: clamp(1.8rem, 7vw, 2.4rem); }
+  .hero-sub { font-size: 0.92rem; }
+  .hero-chips { gap: 6px; }
+  .chip { font-size: 0.7rem; padding: 3px 10px; }
+  .hero-btns { flex-direction: column; gap: 0.8rem; }
+  .btn-gold, .btn-outline-white { text-align: center; padding: 0.85rem 1.5rem; }
+
   .stats-bar-inner { grid-template-columns: repeat(2, 1fr); }
-  .pain-grid { grid-template-columns: 1fr; }
+  .stat-num { font-size: 2rem; }
+
+  .section { padding: 3rem 1.2rem; }
+  .sec-title-box { font-size: clamp(1.3rem, 5vw, 1.8rem); padding: 0.3em 0.6em; }
+
+  .industry-grid { grid-template-columns: repeat(2, 1fr); }
+  .pain-grid { grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+  .pain-card { min-height: 200px; }
+
   .services-grid { grid-template-columns: 1fr; }
   .profile-layout { grid-template-columns: 1fr; gap: 2.5rem; }
   .pricing-grid { grid-template-columns: 1fr; }
-  .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; padding: 5rem 1.2rem 4rem; }
-  .footer-inner { flex-direction: column; align-items: flex-start; }
+  .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; padding: 4rem 1.2rem 3rem; }
+  .footer-inner { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
+}
+
+@media (max-width: 480px) {
+  .pain-grid { grid-template-columns: 1fr; }
+  .industry-grid { grid-template-columns: repeat(2, 1fr); }
+  .stats-bar-inner { grid-template-columns: repeat(2, 1fr); }
+  .hero h1 { font-size: 1.7rem; }
 }
 </style>
 </head>
