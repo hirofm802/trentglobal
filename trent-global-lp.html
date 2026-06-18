@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trent Global — あなたの会社の海外担当者</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --blue: #1A6FD4;
+  --blue-dark: #0F4FA8;
+  --blue-light: #3B8FE8;
+  --blue-pale: #EBF3FF;
+  --cyan: #29B6D8;
+  --gold: #F0A500;
+  --gold-dark: #D48F00;
+  --text: #1A1D26;
+  --text-mid: #4A5570;
+  --text-muted: #8A95B0;
+  --border: #DDE3EF;
+  --bg: #FFFFFF;
+  --bg-soft: #F6F8FC;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', 'Noto Sans JP', sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+
+/* ===== NAV ===== */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2.5rem;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-logo img { height: 38px; width: auto; }
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 0.85rem;
+  color: var(--text-mid);
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--blue); }
+
+.nav-cta {
+  background: var(--gold);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.55rem 1.4rem;
+  border-radius: 24px;
+  transition: background 0.2s;
+}
+.nav-cta:hover { background: var(--gold-dark); }
+
+/* ===== HERO ===== */
+.hero-wrapper {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background: #0A1628;
+}
+
+.hero-slides {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1.4s ease-in-out;
+}
+.hero-slide.active { opacity: 1; }
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    rgba(10,22,40,0.92) 0%,
+    rgba(10,22,40,0.80) 45%,
+    rgba(10,22,40,0.45) 100%
+  );
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 8rem 2.5rem 6rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hero-inner { max-width: 680px; }
+
+.hero-logo { margin-bottom: 2rem; }
+.hero-logo img { height: 60px; width: auto; filter: brightness(0) invert(1); opacity:0.95; }
+
+.hero-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  border: 1px solid rgba(41,182,216,0.4);
+  border-radius: 20px;
+  padding: 4px 14px;
+  margin-bottom: 1.4rem;
+}
+
+.hero h1 {
+  font-size: clamp(2rem, 4.5vw, 3.4rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: #fff;
+  margin-bottom: 1.2rem;
+}
+
+.hero h1 em {
+  font-style: normal;
+  background: linear-gradient(90deg, #29B6D8, #3B8FE8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-sub {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.72);
+  max-width: 520px;
+  line-height: 1.85;
+  margin-bottom: 2rem;
+}
+
+.hero-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 2.4rem;
+}
+
+.chip {
+  font-size: 0.76rem;
+  padding: 4px 12px;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 20px;
+  color: rgba(255,255,255,0.7);
+  background: rgba(255,255,255,0.06);
+}
+
+.hero-btns {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn-gold {
+  padding: 0.9rem 2.2rem;
+  background: var(--gold);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.92rem;
+  border-radius: 28px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  display: inline-block;
+  letter-spacing: 0.02em;
+}
+.btn-gold:hover { background: var(--gold-dark); transform: translateY(-1px); }
+
+.btn-outline-white {
+  padding: 0.9rem 2.2rem;
+  background: transparent;
+  color: rgba(255,255,255,0.85);
+  font-size: 0.92rem;
+  border: 1.5px solid rgba(255,255,255,0.3);
+  border-radius: 28px;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+  display: inline-block;
+}
+.btn-outline-white:hover { border-color: rgba(255,255,255,0.6); color: #fff; }
+
+.hero-dots {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 3;
+}
+.hero-dot {
+  width: 32px; height: 3px;
+  border-radius: 2px;
+  background: rgba(255,255,255,0.25);
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s, width 0.3s;
+  padding: 0;
+}
+.hero-dot.active { background: var(--gold); width: 52px; }
+
+/* diagonal clip */
+.hero-wrapper::after {
+  content: '';
+  position: absolute;
+  bottom: -1px; left: 0; right: 0;
+  height: 80px;
+  background: var(--bg);
+  clip-path: polygon(0 100%, 100% 100%, 100% 0);
+  z-index: 3;
+}
+
+/* ===== STATS BAR ===== */
+.stats-bar {
+  background: var(--blue-dark);
+  padding: 0;
+}
+.stats-bar-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+}
+.stat-cell {
+  padding: 2.4rem 1.5rem;
+  text-align: center;
+  border-right: 1px solid rgba(255,255,255,0.1);
+  position: relative;
+}
+.stat-cell:last-child { border-right: none; }
+.stat-num {
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin-bottom: 0.4rem;
+}
+.stat-num span { font-size: 1.4rem; }
+.stat-label {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.6);
+  letter-spacing: 0.04em;
+}
+
+/* ===== SECTION BASE ===== */
+.section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 5rem 2.5rem;
+}
+
+.sec-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--blue);
+  font-weight: 600;
+  margin-bottom: 0.6rem;
+}
+
+.sec-title {
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.25;
+  margin-bottom: 0.8rem;
+  color: var(--text);
+}
+
+.sec-title-box {
+  display: inline-block;
+  background: linear-gradient(110deg, #29B6D8 0%, #1A6FD4 50%, #0F9E6E 100%);
+  color: #fff;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  padding: 0.25em 0.65em;
+  border-radius: 0;
+  margin-bottom: 1.2rem;
+}
+
+.sec-title {
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.25;
+  margin-bottom: 0.8rem;
+  color: var(--text);
+}
+
+.sec-desc {
+  font-size: 0.97rem;
+  color: var(--text-mid);
+  max-width: 520px;
+  line-height: 1.85;
+  margin-bottom: 3rem;
+}
+
+/* ===== INDUSTRIES ===== */
+.industry-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.ind-card {
+  background: #fff;
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 1.4rem;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  text-align: center;
+}
+.ind-card:hover {
+  border-color: var(--blue-light);
+  box-shadow: 0 4px 16px rgba(26,111,212,0.1);
+  transform: translateY(-2px);
+}
+.ind-card-more {
+  border-style: dashed;
+  border-color: var(--border);
+  background: var(--bg-soft);
+}
+.ind-icon { font-size: 2rem; margin-bottom: 0.6rem; }
+.ind-name { font-size: 0.92rem; font-weight: 600; color: var(--text); margin-bottom: 0.4rem; }
+.ind-desc { font-size: 0.78rem; color: var(--text-muted); line-height: 1.6; }
+
+@media (max-width: 768px) {
+  .industry-grid { grid-template-columns: repeat(2, 1fr); }
+  .pain-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ===== PAIN ===== */
+.pain-bg { background: var(--bg-soft); }
+
+.pain-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.2rem;
+}
+
+.pain-card {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+}
+
+.pain-card-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.5s ease;
+}
+.pain-card:hover .pain-card-bg { transform: scale(1.05); }
+
+.pain-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(10,22,40,0.95) 0%,
+    rgba(10,22,40,0.6) 50%,
+    rgba(10,22,40,0.2) 100%
+  );
+}
+
+.pain-card-body {
+  position: relative;
+  z-index: 2;
+  padding: 1.4rem;
+}
+
+.pain-title {
+  font-size: 0.97rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+.pain-desc {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.7;
+}
+
+/* ===== SERVICES ===== */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.2rem;
+}
+
+.svc-card {
+  background: #fff;
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 1.8rem;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.svc-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--blue-light), var(--cyan));
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.svc-card:hover { border-color: var(--blue-light); box-shadow: 0 6px 24px rgba(26,111,212,0.10); transform: translateY(-2px); }
+.svc-card:hover::before { opacity: 1; }
+.svc-card.featured {
+  border-color: var(--blue);
+  background: var(--blue-pale);
+}
+.svc-card.featured::before { opacity: 1; }
+
+.svc-tag {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 0.7rem;
+}
+
+.svc-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.5rem;
+}
+
+.svc-desc {
+  font-size: 0.86rem;
+  color: var(--text-mid);
+  line-height: 1.75;
+}
+
+.network-strip {
+  margin-top: 2rem;
+  background: linear-gradient(90deg, var(--blue-dark), var(--blue));
+  border-radius: 12px;
+  padding: 1.4rem 1.8rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: #fff;
+}
+.network-strip-icon { font-size: 1.6rem; flex-shrink: 0; }
+.network-strip-text strong { display: block; font-size: 0.95rem; font-weight: 600; margin-bottom: 2px; }
+.network-strip-text span { font-size: 0.85rem; opacity: 0.8; }
+
+/* ===== PROFILE ===== */
+.profile-bg { background: var(--bg-soft); }
+
+.profile-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.profile-name {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.3rem;
+}
+.profile-role {
+  font-size: 0.85rem;
+  color: var(--blue);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  margin-bottom: 1.5rem;
+}
+.profile-story {
+  font-size: 0.92rem;
+  color: var(--text-mid);
+  line-height: 1.95;
+}
+.profile-story strong { color: var(--text); font-weight: 600; }
+
+.cred-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.cred-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 0.9rem 1rem;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 0.84rem;
+  color: var(--text-mid);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+.cred-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--cyan), var(--blue));
+  margin-top: 6px;
+  flex-shrink: 0;
+}
+
+/* ===== CASE ===== */
+.case-card {
+  background: #fff;
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 2.2rem;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+.case-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #0F6E56;
+  background: #E8F5F1;
+  border-radius: 20px;
+  padding: 4px 14px;
+  margin-bottom: 1rem;
+}
+.case-title { font-size: 1.05rem; font-weight: 600; color: var(--text); margin-bottom: 0.8rem; }
+.case-body { font-size: 0.9rem; color: var(--text-mid); line-height: 1.85; margin-bottom: 1.4rem; }
+.case-meta {
+  display: flex; gap: 2rem; flex-wrap: wrap;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--border);
+}
+.case-meta-item { font-size: 0.8rem; color: var(--text-muted); }
+.case-meta-item span { color: var(--text-mid); font-weight: 500; }
+
+/* ===== PRICING ===== */
+.pricing-bg { background: var(--bg-soft); }
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.price-card {
+  background: #fff;
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 2.2rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.price-card:hover { border-color: var(--blue-light); box-shadow: 0 6px 24px rgba(26,111,212,0.08); }
+.price-card.featured {
+  border-color: var(--blue);
+  background: var(--blue-pale);
+  position: relative;
+  overflow: hidden;
+}
+.price-card.featured::after {
+  content: 'おすすめ';
+  position: absolute;
+  top: 16px; right: -28px;
+  background: var(--blue);
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 4px 36px;
+  transform: rotate(45deg);
+  letter-spacing: 0.08em;
+}
+
+.price-type { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.8rem; }
+.price-value { font-size: 2.2rem; font-weight: 700; color: var(--text); letter-spacing: -0.04em; margin-bottom: 0.2rem; }
+.price-unit { font-size: 0.84rem; color: var(--text-muted); margin-bottom: 1.4rem; }
+.price-features { list-style: none; font-size: 0.86rem; color: var(--text-mid); }
+.price-features li { padding: 6px 0; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
+.price-features li:last-child { border-bottom: none; }
+.price-features li::before { content: '✓'; color: var(--blue); font-weight: 700; font-size: 0.85rem; }
+
+/* ===== CONTACT ===== */
+.contact-section {
+  background: linear-gradient(135deg, var(--blue-dark) 0%, #0A1628 100%);
+  position: relative;
+  overflow: hidden;
+}
+.contact-section::before {
+  content: '';
+  position: absolute;
+  top: -2px; left: 0; right: 0;
+  height: 60px;
+  background: var(--bg-soft);
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+
+.contact-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 6rem 2.5rem 5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+
+.contact-left h2 {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.3;
+  margin-bottom: 1rem;
+}
+.contact-left p {
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.85;
+  margin-bottom: 2rem;
+}
+.contact-email-label { font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--cyan); font-weight: 600; margin-bottom: 0.4rem; }
+.contact-email { font-size: 1.15rem; font-weight: 500; color: #fff; }
+.contact-note { margin-top: 0.8rem; font-size: 0.82rem; color: rgba(255,255,255,0.45); line-height: 1.75; }
+
+.contact-box {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 16px;
+  padding: 2.2rem;
+  backdrop-filter: blur(8px);
+}
+.contact-box-badge { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.8rem; }
+.contact-box h3 { font-size: 1.15rem; font-weight: 600; color: #fff; margin-bottom: 0.7rem; }
+.contact-box p { font-size: 0.87rem; color: rgba(255,255,255,0.65); line-height: 1.8; margin-bottom: 1.5rem; }
+
+.btn-gold-full {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  background: var(--gold);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.95rem;
+  border: none;
+  border-radius: 28px;
+  cursor: pointer;
+  text-align: center;
+  transition: background 0.2s, transform 0.15s;
+  letter-spacing: 0.02em;
+}
+.btn-gold-full:hover { background: var(--gold-dark); transform: translateY(-1px); }
+
+/* ===== FOOTER ===== */
+footer {
+  background: #060E1C;
+  padding: 2rem 2.5rem;
+}
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.footer-logo img { height: 30px; width: auto; filter: brightness(0) invert(1); opacity: 0.7; }
+.footer-copy { font-size: 0.78rem; color: rgba(255,255,255,0.3); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  nav { padding: 0 1.2rem; }
+  .nav-links { display: none; }
+  .hero-content { padding: 7rem 1.2rem 5rem; }
+  .section { padding: 3.5rem 1.2rem; }
+  .stats-bar-inner { grid-template-columns: repeat(2, 1fr); }
+  .pain-grid { grid-template-columns: 1fr; }
+  .services-grid { grid-template-columns: 1fr; }
+  .profile-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+  .pricing-grid { grid-template-columns: 1fr; }
+  .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; padding: 5rem 1.2rem 4rem; }
+  .footer-inner { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo"><img src="/mnt/user-data/uploads/Trent_Global.png" alt="Trent Global"></div>
+  <ul class="nav-links">
+    <li><a href="#services">サービス</a></li>
+    <li><a href="#about">プロフィール</a></li>
+    <li><a href="#cases">実績</a></li>
+    <li><a href="#pricing">料金</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">無料相談する</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero-wrapper">
+  <div class="hero-slides">
+    <div class="hero-slide active" style="background-image:url('/mnt/user-data/uploads/Hero6.png')"></div>
+    <div class="hero-slide" style="background-image:url('/mnt/user-data/uploads/Hero1.png')"></div>
+    <div class="hero-slide" style="background-image:url('/mnt/user-data/uploads/Hero2.png')"></div>
+    <div class="hero-slide" style="background-image:url('/mnt/user-data/uploads/Hero3.png')"></div>
+    <div class="hero-slide" style="background-image:url('/mnt/user-data/uploads/Hero4.png')"></div>
+    <div class="hero-slide" style="background-image:url('/mnt/user-data/uploads/Hero5.png')"></div>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-inner">
+      <div class="hero-logo"><img src="/mnt/user-data/uploads/Trent_Global.png" alt="Trent Global"></div>
+      <div class="hero-badge">by Trent Media Works — Fukuoka, Japan</div>
+      <h1>フルタイムは雇えない。<br>でも、<em>海外対応は必要だ。</em></h1>
+      <p class="hero-sub">製造業・酒蔵・食品・農産品・観光・ホテル・旅館のインバウンド対応まで、あなたの会社の「海外担当者」として動きます。大企業から老舗旅館・町の酒蔵まで、業種・規模を問わずご相談ください。</p>
+      <div class="hero-chips">
+        <span class="chip">製造業の輸出対応</span>
+        <span class="chip">酒蔵・食品・飲料の海外展開</span>
+        <span class="chip">農産品のバイヤー対応</span>
+        <span class="chip">観光・ホテル・旅館のインバウンド対応</span>
+        <span class="chip">海外パートナーとの交渉</span>
+        <span class="chip">スタートアップの海外進出</span>
+      </div>
+      <div class="hero-btns">
+        <a href="#contact" class="btn-gold">初回30分・無料相談</a>
+        <a href="#services" class="btn-outline-white">サービスを見る</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-dots">
+    <button class="hero-dot active" onclick="goToSlide(0)"></button>
+    <button class="hero-dot" onclick="goToSlide(1)"></button>
+    <button class="hero-dot" onclick="goToSlide(2)"></button>
+    <button class="hero-dot" onclick="goToSlide(3)"></button>
+    <button class="hero-dot" onclick="goToSlide(4)"></button>
+    <button class="hero-dot" onclick="goToSlide(5)"></button>
+  </div>
+</div>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stats-bar-inner">
+    <div class="stat-cell">
+      <div class="stat-num">12<span>年</span></div>
+      <div class="stat-label">香港滞在・実務経験</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">25<span>カ国</span></div>
+      <div class="stat-label">アジア・中東・欧州・オセアニア</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">20<span>年</span></div>
+      <div class="stat-label">国際ビジネス実務経験</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">4<span>+</span></div>
+      <div class="stat-label">五輪・W杯等大型イベント</div>
+    </div>
+  </div>
+</div>
+
+<!-- INDUSTRIES -->
+<section id="industries">
+  <div class="section">
+    <p class="sec-label">対応業種</p>
+    <h2 class="sec-title-box">業種・規模を問わず、動きます。</h2>
+    <p class="sec-desc">「うちみたいな会社でも大丈夫？」という段階でも歓迎します。海外との接点があるなら、まずご相談ください。</p>
+    <div class="industry-grid">
+      <div class="ind-card">
+        <div class="ind-icon">🏭</div>
+        <div class="ind-name">製造業</div>
+        <div class="ind-desc">輸出対応・海外バイヤー交渉・英文資料作成</div>
+      </div>
+      <div class="ind-card">
+        <div class="ind-icon">🍶</div>
+        <div class="ind-name">酒蔵・醸造</div>
+        <div class="ind-desc">日本酒・焼酎・クラフトビールの海外展開</div>
+      </div>
+      <div class="ind-card">
+        <div class="ind-icon">🍱</div>
+        <div class="ind-name">食品・飲料</div>
+        <div class="ind-desc">輸出商談・バイヤー対応・英文ラベル確認</div>
+      </div>
+      <div class="ind-card">
+        <div class="ind-icon">🌾</div>
+        <div class="ind-name">農業・農産品</div>
+        <div class="ind-desc">産地PRから海外バイヤーとの橋渡しまで</div>
+      </div>
+      <div class="ind-card">
+        <div class="ind-icon">🏨</div>
+        <div class="ind-name">観光・ホテル・旅館</div>
+        <div class="ind-desc">インバウンド顧客対応・英語SNS・予約窓口</div>
+      </div>
+      <div class="ind-card">
+        <div class="ind-icon">🚀</div>
+        <div class="ind-name">スタートアップ</div>
+        <div class="ind-desc">海外進出の初期調査・英語ピッチ・パートナー開拓</div>
+      </div>
+      <div class="ind-card">
+        <div class="ind-icon">🤝</div>
+        <div class="ind-name">商社・貿易</div>
+        <div class="ind-desc">海外折衝・契約書チェック・現地情報収集</div>
+      </div>
+      <div class="ind-card ind-card-more">
+        <div class="ind-icon">💬</div>
+        <div class="ind-name">その他の業種</div>
+        <div class="ind-desc">海外との接点があれば、まずご相談ください。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAIN -->
+<section id="pain" class="pain-bg">
+  <div class="section">
+    <p class="sec-label">こんなお困りごとはありませんか</p>
+    <h2 class="sec-title-box">海外対応、一人で抱えていませんか？</h2>
+    <div class="pain-grid">
+      <div class="pain-card">
+        <div class="pain-card-bg" style="background-image:url('/mnt/user-data/uploads/1.png')"></div>
+        <div class="pain-card-overlay"></div>
+        <div class="pain-card-body">
+          <p class="pain-title">英語対応が追いつかない</p>
+          <p class="pain-desc">海外から問い合わせが来ても返信が遅れてしまう。英語担当者がいない。機会損失が続いている。</p>
+        </div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-card-bg" style="background-image:url('/mnt/user-data/uploads/2.png')"></div>
+        <div class="pain-card-overlay"></div>
+        <div class="pain-card-body">
+          <p class="pain-title">商談はしたいが英語が不安</p>
+          <p class="pain-desc">海外バイヤーとの商談の場で、言いたいことが伝わらない。通訳・交渉のサポートが欲しい。</p>
+        </div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-card-bg" style="background-image:url('/mnt/user-data/uploads/3.png')"></div>
+        <div class="pain-card-overlay"></div>
+        <div class="pain-card-body">
+          <p class="pain-title">AI翻訳は使っているけど不安</p>
+          <p class="pain-desc">DeepLやChatGPTで何とかしているが、このニュアンスで本当に伝わっているのか、ビジネスとして大丈夫か確信が持てない。</p>
+        </div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-card-bg" style="background-image:url('/mnt/user-data/uploads/4.png')"></div>
+        <div class="pain-card-overlay"></div>
+        <div class="pain-card-body">
+          <p class="pain-title">海外担当を雇う余裕がない</p>
+          <p class="pain-desc">フルタイムで雇用するコストはかけられないが、フレキシブルに現場で動いてくれるプロが必要。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section">
+    <p class="sec-label">提供サービス</p>
+    <h2 class="sec-title-box">必要なときに、必要な分だけ。</h2>
+    <p class="sec-desc">単発スポットから月額リテイナーまで、御社の状況に合わせて柔軟に対応します。</p>
+    <div class="services-grid">
+      <div class="svc-card featured">
+        <p class="svc-title">海外顧客対応（CS）代行</p>
+        <p class="svc-desc">英語メール・チャット対応、問い合わせ処理、フォローアップ。海外からの窓口を丸ごと担当します。</p>
+      </div>
+      <div class="svc-card">
+        <p class="svc-title">商談同席・交渉サポート</p>
+        <p class="svc-desc">オンライン・対面商談への同席、英語交渉補助、議事録作成、アフターフォロー。</p>
+      </div>
+      <div class="svc-card">
+        <p class="svc-title">海外リサーチ・情報収集</p>
+        <p class="svc-desc">バイヤー・現地パートナー調査、競合・市場動向のリサーチと日本語レポーティング。</p>
+      </div>
+      <div class="svc-card">
+        <p class="svc-title">英文メール・資料作成</p>
+        <p class="svc-desc">英文ドラフト・返信代行、提案書・会社概要の英語化、契約書チェック。</p>
+      </div>
+    </div>
+    <div class="network-strip">
+      <div class="network-strip-icon">🌐</div>
+      <div class="network-strip-text">
+        <strong>広報・通訳ネットワークあり</strong>
+        <span>信頼できる広報・PR専門家および多言語通訳者のネットワークを保有。大型案件・多言語対応も柔軟に連携します。</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="profile-bg">
+  <div class="section">
+    <p class="sec-label">担当者プロフィール</p>
+    <div class="profile-layout">
+      <div>
+        <p class="profile-name">小野 宏晃</p>
+        <p class="profile-role">Hiroaki Ono — Trent Global 代表</p>
+        <p class="profile-story">
+          香港に拠点を置く<strong>英系メディア・広告代理店</strong>に勤務し、<strong>香港に12年間滞在</strong>いたしました。在籍中はアジア25カ国を毎週飛び回り、各国でのビジネス交渉・運営実務を積み重ねてまいりました。<br><br>
+          その後、<strong>オリンピック・ワールドカップ・アジア競技大会・国際博覧会</strong>など世界規模のイベントでマネジメントを担当。多国籍チームをまとめ、タイトなスケジュールの中で成果を出し続けてまいりました。<br><br>
+          現在は福岡を拠点に、日本企業の海外進出・海外対応を現場レベルでサポートするとともに、<strong>AIを駆使したノーコードによるウェブ・業務ツール開発</strong>にも従事しております。テクノロジーと実務経験を組み合わせた支援を提供しています。
+        </p>
+      </div>
+      <div class="cred-list">
+        <div class="cred-item"><span class="cred-dot"></span>香港12年・英系メディア・広告代理店勤務</div>
+        <div class="cred-item"><span class="cred-dot"></span>Olympic Broadcasting Services（複数大会）</div>
+        <div class="cred-item"><span class="cred-dot"></span>FIFA・AFC放送オペレーション</div>
+        <div class="cred-item"><span class="cred-dot"></span>Expo 2025 大阪 UAEパビリオン</div>
+        <div class="cred-item"><span class="cred-dot"></span>25カ国での実務（アジア・オセアニア・中東・ヨーロッパ）</div>
+        <div class="cred-item"><span class="cred-dot"></span>英語・日本語バイリンガル</div>
+        <div class="cred-item"><span class="cred-dot"></span>AIノーコード開発（ウェブ・業務ツール）</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASES -->
+<section id="cases">
+  <div class="section">
+    <p class="sec-label">支援実績</p>
+    <h2 class="sec-title-box">実際に動いた案件。</h2>
+    <p class="sec-desc">小さな案件から丁寧に。実績は随時更新します。</p>
+    <div class="case-card">
+      <span class="case-badge">✦ 直近事例</span>
+      <p class="case-title">人材紹介会社｜海外クライアントとの初回商談サポート（福岡）</p>
+      <p class="case-body">海外クライアントとの初回商談に向けて、会社案内の英語版を作成。あわせて商談時の注意点・文化的背景・英語でのコミュニケーション戦略をアドバイス。クライアントが自信を持って商談に臨めるよう伴走しました。</p>
+      <div class="case-meta">
+        <div class="case-meta-item">業種：<span>人材紹介</span></div>
+        <div class="case-meta-item">対応時間：<span>約6時間</span></div>
+        <div class="case-meta-item">形式：<span>スポット対応</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" class="pricing-bg">
+  <div class="section">
+    <p class="sec-label">料金プラン</p>
+    <h2 class="sec-title">必要な分だけ、透明に。</h2>
+    <p class="sec-desc">まずスポットで試していただき、継続が必要と感じたらリテイナーへ。多くのお客様がこの流れです。</p>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <p class="price-type">スポット対応</p>
+        <p class="price-value">¥10,000〜</p>
+        <p class="price-unit">/ 時間</p>
+        <ul class="price-features">
+          <li>単発依頼・緊急対応</li>
+          <li>商談同席1回から</li>
+          <li>英文資料作成</li>
+          <li>初回相談30分無料</li>
+        </ul>
+      </div>
+      <div class="price-card featured">
+        <p class="price-type">月額リテイナー</p>
+        <p class="price-value">¥50,000〜</p>
+        <p class="price-unit">/ 月（月10時間確保）</p>
+        <ul class="price-features">
+          <li>優先対応・即日レスポンス</li>
+          <li>継続的な海外窓口サポート</li>
+          <li>月次レポート・振り返り</li>
+          <li>時間追加も柔軟に対応</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+  <div class="contact-inner">
+    <div class="contact-left">
+      <p class="sec-label" style="color:var(--cyan)">お問い合わせ</p>
+      <h2>まずは話してみてください。</h2>
+      <p>「うちに合うかな？」という段階でも歓迎します。業種・規模を問わず、現状のお困りごとをお聞かせください。</p>
+      <p class="contact-email-label">メールアドレス</p>
+      <p class="contact-email">hiro@trent.jp</p>
+      <p class="contact-note">※ 通常1〜2営業日以内にご返信いたします。<br>福岡市内であれば対面でのご相談も可能です。</p>
+    </div>
+    <div class="contact-box">
+      <p class="contact-box-badge">無料相談受付中</p>
+      <h3>初回30分・オンライン相談</h3>
+      <p>現状のご状況をお聞きし、Trent Globalがお役に立てるかどうかを率直にお伝えします。売り込みは一切ありません。</p>
+      <a href="mailto:hiro@trent.jp" class="btn-gold-full">メールで相談する →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo"><img src="/mnt/user-data/uploads/Trent_Global.png" alt="Trent Global"></div>
+    <p class="footer-copy">© 2025 Trent Media Works. Fukuoka, Japan. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+let current = 0;
+const slides = document.querySelectorAll('.hero-slide');
+const dots = document.querySelectorAll('.hero-dot');
+function goToSlide(n) {
+  slides[current].classList.remove('active');
+  dots[current].classList.remove('active');
+  current = n;
+  slides[current].classList.add('active');
+  dots[current].classList.add('active');
+}
+setInterval(() => goToSlide((current + 1) % slides.length), 5000);
+</script>
+</body>
+</html>
